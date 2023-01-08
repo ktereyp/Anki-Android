@@ -1612,7 +1612,7 @@ public class SchedV2 extends AbstractSched {
                  */
                 // fill the queue with the current did
             try (Cursor cur = mCol.getDb().query("SELECT id FROM cards WHERE did in " + _deckLimit() + " AND queue = " + Consts.QUEUE_TYPE_REV + " AND due <= ? AND " + idName + " != ?"
-                               + " ORDER BY due, random()  LIMIT ?",
+                               + " ORDER BY ivl, due, random() LIMIT ?",
                                mToday, id, lim)) {
                 while (cur.moveToNext()) {
                     mRevQueue.add(cur.getLong(0));
